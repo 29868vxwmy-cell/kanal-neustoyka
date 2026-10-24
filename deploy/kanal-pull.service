@@ -1,0 +1,6 @@
+[Unit]
+Description=Забрать черновики канала из GitHub
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh /opt/kanal-neustoyka/scripts/pull.sh
