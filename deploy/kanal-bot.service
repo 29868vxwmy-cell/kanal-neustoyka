@@ -1,0 +1,25 @@
+[Unit]
+Description=Бот Telegram-канала про неустойку
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=kanal
+Group=kanal
+WorkingDirectory=/opt/kanal-neustoyka
+EnvironmentFile=/opt/kanal-neustoyka/.env
+Environment=KANAL_REPO_DIR=/opt/kanal-neustoyka
+Environment=KANAL_STATE=/var/lib/kanal-neustoyka/state.json
+Environment=KANAL_GIT_PULL=0
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 -m bot.kanal run
+Restart=always
+RestartSec=30
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ReadWritePaths=/var/lib/kanal-neustoyka
+
+[Install]
+WantedBy=multi-user.target
